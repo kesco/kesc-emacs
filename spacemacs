@@ -25,19 +25,15 @@ values."
      ;; ----------------------------------------------------------------
      (auto-completion :variables
                       auto-completion-return-key-behavior 'complete)
-     ;; better-defaults
+     (c-c++ :variables
+            c-c++-default-mode-for-headers 'c++-mode
+            c-c++-enable-clang-support t)
      emacs-lisp
-     ;; git
      markdown
      (org :variables
           org-enable-github-support t)
-     ;; (shell :variables
-     ;;        shell-default-height 30
-     ;;        shell-default-position 'bottom)
-     ;; spell-checking
-     ;; syntax-checking
-     ;; version-control
      osx
+     semantic
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -256,13 +252,14 @@ you should place you code here."
   (setq powerline-default-separator 'slant
         neo-theme 'nerd)
   ;;; 设置Org-Mode Capture
+  (setq org-startup-truncated nil)
   (setq org-capture-templates
-        `(("t" "Todo" entry (file+headline "~/Documents/notes/org/inbox.org" "Tasks")
+        `(("n" "随笔" entry (file+headline "~/Documents/notes/org/notes.org" "Kesco的随笔")
+           "* %?\n\n记录于%U\n %i\n %a" :prepend t :empty-lines 1)
+          ("t" "待办事项" entry (file+headline "~/Documents/notes/org/todo.org" "待办事项")
            "* TODO %?\n%U  %i" :prepend t)
           ("j" "Journal" entry (file+datetree "~/Documents/notes/org/finished.org" "Journals")
            "* %?\n %T  %i")
-          ("s" "随笔" entry (file+headline "~/Documents/notes/org/notes.org" "Kesco的随笔")
-           "* %U %?\n\n  %i" :prepend t :empty-lines 1)
           ))
   )
 
