@@ -23,15 +23,19 @@ values."
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     (auto-completion :variables
-                      auto-completion-return-key-behavior 'complete)
      (c-c++ :variables
             c-c++-default-mode-for-headers 'c++-mode
             c-c++-enable-clang-support t)
      emacs-lisp
+     dockerfile
+     html
      markdown
-     (org :variables
-          org-enable-github-support t)
+     javascript
+     yaml
+     (auto-completion :variables
+                      auto-completion-return-key-behavior 'complete)
+     colors
+     (org :variables org-enable-github-support t)
      osx
      semantic
      )
@@ -206,7 +210,7 @@ values."
    ;; If non nil line numbers are turned on in all `prog-mode' and `text-mode'
    ;; derivatives. If set to `relative', also turns on relative line numbers.
    ;; (default nil)
-   dotspacemacs-line-numbers nil
+   dotspacemacs-line-numbers t
    ;; If non-nil smartparens-strict-mode will be enabled in programming modes.
    ;; (default nil)
    dotspacemacs-smartparens-strict-mode nil
@@ -250,17 +254,21 @@ This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place you code here."
   (setq powerline-default-separator 'slant
-        neo-theme 'nerd)
-  ;;; 设置Org-Mode Capture
-  (setq org-startup-truncated nil)
-  (setq org-capture-templates
-        `(("n" "随笔" entry (file+headline "~/Documents/notes/org/notes.org" "Kesco的随笔")
+        neo-theme 'nerd
+        org-startup-truncated nil
+        ;; 设置Org-Mode Capture
+        org-capture-templates
+        `(("n" "随笔" entry (file+headline "~/.org/notes.org" "Kesco的随笔")
            "* %?\n\n记录于%U\n %i\n %a" :prepend t :empty-lines 1)
-          ("t" "待办事项" entry (file+headline "~/Documents/notes/org/todo.org" "待办事项")
+          ("t" "待办事项" entry (file+headline "~/.org/todo.org" "待办事项")
            "* TODO %?\n%U  %i" :prepend t)
-          ("j" "Journal" entry (file+datetree "~/Documents/notes/org/finished.org" "Journals")
+          ("j" "Journal" entry (file+datetree "~/.org/finished.org" "Journals")
            "* %?\n %T  %i")
-          ))
+          )
+        org-agenda-files (list "~/.org/todo.org")
+        org-pomodoro-length 45
+        org-pomodoro-short-break-length 10
+        )
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
